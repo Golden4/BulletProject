@@ -19,13 +19,15 @@ public class Player : MonoBehaviour
         curGunInHand.transform.localScale = new Vector3(-curGunInHand.transform.localScale.x, curGunInHand.transform.localScale.y);
     }
 
+    Vector2 mouseWorldPoint;
+    Vector2 direction;
     private void Update()
     {
-        Vector2 mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 direction = (-(Vector2)startHandPoint.position + mouseWorldPoint).normalized;
+        direction = (-(Vector2)startHandPoint.position + mouseWorldPoint).normalized;
 
-        handIk.transform.position = direction * 20;
+        handIk.transform.position = (Vector2)startHandPoint.position + direction * 5;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -33,4 +35,15 @@ public class Player : MonoBehaviour
         }
     }
 
+
+  /*  private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(mouseWorldPoint, .2f);
+
+        Gizmos.DrawWireSphere(startHandPoint.position, .2f);
+
+
+        Gizmos.DrawWireSphere((Vector2)curGunInHand.muzzlePoint.position + direction * 5, .2f);
+
+    }*/
 }

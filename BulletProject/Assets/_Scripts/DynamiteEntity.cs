@@ -31,8 +31,8 @@ public class DynamiteEntity : Entity
         }
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, explodeRadius);
-    }
+    }*/
 }

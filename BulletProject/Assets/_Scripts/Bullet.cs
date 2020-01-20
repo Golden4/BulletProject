@@ -55,12 +55,7 @@ public class Bullet : MonoBehaviour
             HitInfo hitInfo = new HitInfo(gameObject, hit.transform, hit.point, transform.up, bulletForce);
             hittableObject.TakeHit(hitInfo);
             //Примение силы
-            Rigidbody2D rb = hit.transform.GetComponent<Rigidbody2D>();
-
-            if (rb)
-            {
-                rb.AddForceAtPosition(transform.up * 500, hit.point);
-            }
+            
 
             //Проверка на отражание
             Entity entity = (Entity)hittableObject;
@@ -85,6 +80,13 @@ public class Bullet : MonoBehaviour
             lastHittable = hittableObject;
         }
 
+        Rigidbody2D rb = hit.transform.GetComponent<Rigidbody2D>();
+
+        if (rb)
+        {
+            rb.AddForceAtPosition(transform.up * 500, hit.point);
+        }
+
         if (maxHitCount <= curHitCount)
         {
             needDestoy = true;
@@ -94,7 +96,7 @@ public class Bullet : MonoBehaviour
             Die();
         else
         {
-            if (needReflect)
+            if (needReflect && lastHittable != null && lastHittable != hittableObject)
             {
                 curHitCount++;
                 Vector3 reflectDir = Vector3.Reflect(transform.up, hit.normal.normalized);

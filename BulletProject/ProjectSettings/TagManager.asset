@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SpawnPoints
   layers:
   - Default
   - TransparentFX
@@ -38,6 +39,9 @@ TagManager:
   - Ragdoll1
   - Ragdoll2
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2330023517
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
